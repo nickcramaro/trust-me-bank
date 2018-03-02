@@ -20,8 +20,8 @@ class App extends Component {
                 </AppBar>
 
                 <Switch>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/login' exact component={Login} />
+                    <Route exact path='/' component={Home} />
+                    <Route path='/login' component={Login} />
                 </Switch>
             </div>
         );

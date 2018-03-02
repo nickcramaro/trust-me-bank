@@ -5,7 +5,8 @@ module.exports = {
     entry: ['./src/index.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -30,6 +31,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     resolve: {
         alias: { 
