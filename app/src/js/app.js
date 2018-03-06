@@ -13,7 +13,7 @@ class App extends Component {
             <div>
                 <AppBar position="static" color="default">
                     <Toolbar>
-                        <Typography variant="title" color="inherit">
+                        <Typography variant="title">
                             Trust Me Bank
                         </Typography>
                     </Toolbar>

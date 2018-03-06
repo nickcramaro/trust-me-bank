@@ -9,11 +9,6 @@ const styles = theme => ({
     card: {
         minWidth: 275
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)'
-    },
     title: {
         marginBottom: 16,
         fontSize: 14,
@@ -27,7 +22,6 @@ const styles = theme => ({
 
 function SimpleCard(props) {
     const {classes, title, subtitle, body} = props;
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <div>
@@ -35,12 +29,12 @@ function SimpleCard(props) {
                 <CardContent>
                     <Typography className={classes.title}>{title}</Typography>
                     <Typography className={classes.pos}>{subtitle}</Typography>
-                    <Typography component="p">
+                    <Typography component='p'>
                         {body}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button size='small'>Learn More</Button>
                 </CardActions>
             </Card>
         </div>
@@ -48,7 +42,10 @@ function SimpleCard(props) {
 }
 
 SimpleCard.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    body: PropTypes.string
 };
 
 export default withStyles(styles)(SimpleCard);
