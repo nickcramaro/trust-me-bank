@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const routes = require('./routes');
 const mongoose = require('mongoose');
+const auth = require('./routes/auth');
 
 mongoose.connect('mongodb://localhost:27017/trust-me');
 
@@ -13,6 +13,7 @@ app.use(function(req, res, next) {
     next();
 });
 app.use(bodyParser.json());
-app.use('/', routes);
+
+app.use('/auth', auth);
 
 app.listen(8080);

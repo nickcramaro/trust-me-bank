@@ -31,7 +31,7 @@ class Login extends Component {
 
     handleClick = () => {
         console.log(this.state);
-        axios.post('http://localhost:8080/login', this.state)
+        axios.post('http://localhost:8080/auth/login', this.state)
             .then(res => console.log(res));
     }
 
