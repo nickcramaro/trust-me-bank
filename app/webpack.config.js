@@ -41,5 +41,7 @@ module.exports = {
             Shared: path.resolve(__dirname, 'src/js/components/shared')
         }
     },
-    plugins: [new HtmlWebPackPlugin({template: './src/index.html', filename: './index.html'})]
+    plugins: [
+        new HtmlWebPackPlugin({template: './src/index.html', filename: './index.html'})
+    ]
 };
