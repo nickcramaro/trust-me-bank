@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 function SimpleCard(props) {
-    const {classes, title, subtitle, body} = props;
+    const {classes, title, subtitle, body, button} = props;
 
     return (
         <div>
@@ -34,7 +34,7 @@ function SimpleCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size='small'>Learn More</Button>
+                    <Button size='small'>{button}</Button>
                 </CardActions>
             </Card>
         </div>
@@ -45,7 +45,8 @@ SimpleCard.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string,
     subtitle: PropTypes.string,
-    body: PropTypes.string
+    body: PropTypes.string,
+    button: PropTypes.string
 };
 
 export default withStyles(styles)(SimpleCard);
