@@ -3,9 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const auth = require('./routes/auth');
-const accounts = require('./routes/account');
-const transactions = require('./routes/transaction');
+const auth = require('./routes/auth.route');
+const accounts = require('./routes/account.route');
+const transactions = require('./routes/transaction.route');
 
 mongoose.connect('mongodb://localhost:27017/trust-me');
 

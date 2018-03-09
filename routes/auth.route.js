@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/user');
+const User = require('../models/user.model');
 
 router.post('/signup', (req, res) => {
     let user = new User({email: req.body.email, password: req.body.password});

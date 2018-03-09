@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/user');
-const Account = require('../models/account');
+const User = require('../models/user.model');
+const Account = require('../models/account.model');
+const Transaction = require('../models/transaction.model');
 
 router.get('/', (req, res) => {
     res.send({ok: 'ok'});
