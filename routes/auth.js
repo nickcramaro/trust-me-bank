@@ -5,18 +5,27 @@ const User = require('../models/user');
 
 router.post('/signup', (req, res) => {
     let user = new User({email: req.body.email, password: req.body.password});
-    user.save().then(() => console.log('it works'));
-    res.json({test: 'it works'});
+    user.save()
+        .then((user) => {
+            res.send(user);
+        })
+        .catch(() => {
+            res.status(500).send({ error: 'FAIL' })
+        });
+    
 });
 
 router.post('/login', (req, res) => {
-    console.log(req.body);
-
-    User.findOne({email: req.body.email, password: {$ne: 1}}, (err, res) => {
-        console.log('all good yo', res)
-    });
-    
-    res.json({test: 'it works'});
+    User.findOne({email: req.body.email, password: req.body.password})
+        .then(user => {
+            if (user)
+                res.send(user);
+            else
+                res.status(500).send({ error: 'FAIL' })
+        })
+        .catch(() => {
+            res.status(500).send({ error: 'FAIL' });
+        });
 });
 
 module.exports = router;
