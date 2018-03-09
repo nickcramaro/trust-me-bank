@@ -6,9 +6,6 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
-    card: {
-        minWidth: 275
-    },
     title: {
         marginBottom: 16,
         fontSize: 14,

@@ -72,28 +72,28 @@ class Home extends Component {
 
         return (
             <div>
-                <div className={classes.header}>
+                <Grid className={classes.header} container spacing={24}>
                     <Typography className={classes.bannerText} variant='display1'>
                         Dream it. Save it. Done.
                     </Typography>
-                </div>
+                </Grid>
 
                 <Grid className={classes.container} container spacing={24}>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={4}>
                         <Paper className={classes.paper}>
                             <AttachMoney className={classes.icon + ' ' + classes.green} />
                             <Typography variant='display1'>Money</Typography>
                             <Typography>Make money, and then make more money</Typography>
                         </Paper>
                     </Grid>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={4}>
                         <Paper className={classes.paper}>
                             <TrendingUp className={classes.icon + ' ' + classes.yellow}/>
                             <Typography variant='display1'>Increase</Typography>
                             <Typography>Your money almost always goes up</Typography>
                         </Paper>
                     </Grid>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={4}>
                         <Paper className={classes.paper}>
                             <Lock className={classes.icon + ' ' + classes.orange}/>
                             <Typography variant='display1'>Secure</Typography>
@@ -103,13 +103,13 @@ class Home extends Component {
                 </Grid>
 
                 <Grid className={classes.containerAlt} container spacing={24}>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={6}>
                         <Typography variant='display1'>
                             Keeping your money safe is as easy as locking it up in a vault. Here at <strong>Trust Me Bank</strong> that is exactly what we do.
                             You bring us cash and we lock it up. Cold hard cash.
                         </Typography>
                     </Grid>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={6}>
                         <LockOpen className={classes.iconLarge + ' ' + classes.green} />
                     </Grid>
                 </Grid>
