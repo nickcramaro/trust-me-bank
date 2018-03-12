@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema({
     amount: Number,
+    date: Date,
     accountIdTo: String,
     accountIdFrom: String,
     description: String
