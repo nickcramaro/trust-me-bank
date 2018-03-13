@@ -1,24 +1,8 @@
-const express = require('express');
-const router = express.Router();
+module.exports = (app) => {
+    const transactionController = require('../controllers/transaction.controller');
 
-const User = require('../models/user.model');
-const Account = require('../models/account.model');
-const Transaction = require('../models/transaction.model');
-
-router.get('/', (req, res) => {
-    res.send({ok: 'ok'});
-});
-
-router.post('/', (req, res) => {
-    res.send({ok: 'ok'});
-});
-
-router.put('/', (req, res) => {
-    res.send({ok: 'ok'});
-});
-
-router.delete('/', (req, res) => {
-    res.send({ok: 'ok'});s
-});
-
-module.exports = router;
+    app.get('/transaction', transactionController.getAll);
+    app.post('/transaction', transactionController.create);
+    app.put('/transaction', transactionController.update);
+    app.delete('/transaction', transactionController.delete);
+}

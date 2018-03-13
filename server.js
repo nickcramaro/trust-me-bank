@@ -17,8 +17,12 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json());
 
-app.use('/auth', auth);
-app.use('/accounts', accounts);
-app.use('/transactions', transactions);
+//registering routes
+auth(app);
+accounts(app);
+transactions(app);
 
+//listening on port 8080
 app.listen(8080);
+
+module.exports = app;
