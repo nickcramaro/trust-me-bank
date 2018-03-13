@@ -5,11 +5,19 @@ import Paper from 'material-ui/Paper';
 import Input, {InputLabel} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 import axios from 'axios';
 
+import LoginForm from 'Shared/loginForm';
+import SignupForm from 'Shared/signupForm';
+
 const styles = {
-    item: {
-        margin: 'auto'
+    header: {
+        backgroundColor: 'rgba(0, 0, 0, 0.03)',
+        padding: '50px'
+    },
+    container: {
+        padding: '50px'
     },
     paper: {
         padding: 20
@@ -20,50 +28,42 @@ const styles = {
     },
     button: {
         margin: '10px 0 0 0'
+    },
+    subtext: {
+        textAlign: 'center'
     }
 }
 
 class Login extends Component {
     state = {
-        email: undefined,
-        password: undefined
-    };
-
-    handleClick = () => {
-        console.log(this.state);
-        axios.post('http://localhost:8080/auth/login', this.state)
-            .then(res => console.log(res));
+        login: true
     }
 
-    handleChange = (event, name) => {
+    changeState = () => {
         this.setState({
-            [name]: event.target.value
-        })
+            login: !this.state.login
+        });
     }
-    
+
     render() {
         const {classes} = this.props;
 
         return (
-            <Grid className={classes.container} container spacing={24}>
-                <Grid item xs={3} className={classes.item}>
-                    <Paper className={classes.paper}>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor='email'>Email</InputLabel>
-                            <Input id='email' onChange={(e, name) => this.handleChange(e, 'email')}/>
-                        </FormControl>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor='password'>Password</InputLabel>
-                            <Input id='password' type='password' onChange={(e, name) => this.handleChange(e, 'password')}/>
-                        </FormControl>
-                        <Button variant="raised" color="primary" 
-                            className={classes.button} 
-                            onClick={this.handleClick}>
-                            Login
-                        </Button>
-                    </Paper>
+            <div>
+                <Grid className={classes.header} container spacing={24}>
+                    <Grid item xs={12}>
+                        <Typography variant='display1'>
+                            { this.state.login ? 'Login' : 'Signup' }
+                        </Typography>
+                    </Grid>
                 </Grid>
-            </Grid>
+                { this.state.login ? <LoginForm /> : <SignupForm /> }
+                { 
+                    this.state.login ? 
+                    <p className={classes.subtext}>Need to sign up? <button onClick={this.changeState}>Click here</button></p> :
+                    <p className={classes.subtext}>Need to login? <button onClick={this.changeState}>Click here</button></p> 
+                }
+            </div>
         );
     }
 }

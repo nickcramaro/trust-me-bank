@@ -32,7 +32,7 @@ const styles = {
 
 class App extends Component {
     state = {
-        user: true
+        user: false
     }
 
     renderNavigation = () => {
