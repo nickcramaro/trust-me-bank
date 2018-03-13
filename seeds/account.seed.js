@@ -13,6 +13,7 @@ module.exports = () => {
                 {number: '00000005', type: 3, amount: 32464.32, userId: users[1]._id},
                 {number: '00000006', type: 1, amount: 2356.66, userId: users[2]._id},
                 {number: '00000007', type: 2, amount: 12566.56, userId: users[2]._id},
+                {number: '00000008', type: 3, amount: 12515.52, userId: users[2]._id},
                 {number: '00000009', type: 4, amount: 3266.52, userId: users[2]._id},
                 {number: '00000010', type: 1, amount: 125.64, userId: users[3]._id},
                 {number: '00000011', type: 2, amount: 56.53, userId: users[3]._id},
