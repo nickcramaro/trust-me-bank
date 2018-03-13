@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const auth = require('./routes/auth.route');
 const accounts = require('./routes/account.route');
@@ -16,6 +17,22 @@ app.use(function(req, res, next) {
     next();
 });
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
+        jwt.verify(req.headers.authorization.split(' ')[1], 'TRUST ME SECRETS', (err, decoded) => {
+            if (err) {
+                req.user = undefined;
+            } else {
+                req.user = decoded;
+            }
+            next();
+        })
+    } else {
+        req.user = undefined;
+        next();
+    }
+});
 
 //registering routes
 auth(app);
