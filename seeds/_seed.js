@@ -11,6 +11,7 @@ seedUser().then((users) => {
         console.log(accounts);
         seedTransaction().then((transactions) => {
             console.log(transactions);
+            process.exit();
         });
     });
 });
