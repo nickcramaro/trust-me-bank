@@ -24,7 +24,7 @@ exports.login = (req, res) => {
             if (user) {
                 if (user.comparePassword(req.body.password)) {
                     res.json({
-                        token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, 'TRUST ME SECRETS')
+                        token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET)
                     });
                 } else {
                     res
