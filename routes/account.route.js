@@ -5,5 +5,5 @@ module.exports = (app) => {
     app.get('/account', authController.authRequired, accountController.getAll);
     app.post('/account', authController.authRequired, accountController.create);
     app.put('/account', authController.authRequired, accountController.update);
-    app.delete('/account', authController.authRequired, accountController.delete);
+    app.delete('/account/:id', authController.authRequired, accountController.delete);
 }

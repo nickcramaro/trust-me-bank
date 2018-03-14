@@ -13,7 +13,7 @@ exports.signup = (req, res) => {
         .catch(() => {
             res
                 .status(500)
-                .send({error: 'FAIL'})
+                .send({error: 'FAIL'});
         });
 };
 
