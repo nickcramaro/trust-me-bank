@@ -6,18 +6,18 @@ module.exports = () => {
     return User.find({}, (err, users) => {
         if (!err) {
             const accountsToSeed = [
-                {number: '00000001', type: 1, amount: 5025.22, userId: users[0]._id},
-                {number: '00000002', type: 2, amount: 15025.35, userId: users[0]._id},
-                {number: '00000003', type: 3, amount: 1024.53, userId: users[0]._id},
-                {number: '00000004', type: 1, amount: 1356.35, userId: users[1]._id},
-                {number: '00000005', type: 3, amount: 32464.32, userId: users[1]._id},
-                {number: '00000006', type: 1, amount: 2356.66, userId: users[2]._id},
-                {number: '00000007', type: 2, amount: 12566.56, userId: users[2]._id},
-                {number: '00000008', type: 3, amount: 12515.52, userId: users[2]._id},
-                {number: '00000009', type: 4, amount: 3266.52, userId: users[2]._id},
-                {number: '00000010', type: 1, amount: 125.64, userId: users[3]._id},
-                {number: '00000011', type: 2, amount: 56.53, userId: users[3]._id},
-                {number: '00000012', type: 3, amount: 12511.25, userId: users[3]._id},
+                {type: 1, amount: 5025.22, user_id: users[0]._id},
+                {type: 2, amount: 15025.35, user_id: users[0]._id},
+                {type: 3, amount: 1024.53, user_id: users[0]._id},
+                {type: 1, amount: 1356.35, user_id: users[1]._id},
+                {type: 3, amount: 32464.32, user_id: users[1]._id},
+                {type: 1, amount: 2356.66, user_id: users[2]._id},
+                {type: 2, amount: 12566.56, user_id: users[2]._id},
+                {type: 3, amount: 12515.52, user_id: users[2]._id},
+                {type: 4, amount: 3266.52, user_id: users[2]._id},
+                {type: 1, amount: 125.64, user_id: users[3]._id},
+                {type: 2, amount: 56.53, user_id: users[3]._id},
+                {type: 3, amount: 12511.25, user_id: users[3]._id},
             ];
 
             return new Promise((resolve, reject) => {
