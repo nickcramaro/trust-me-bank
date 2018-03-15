@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route, Link, Redirect} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -32,13 +32,13 @@ const styles = {
 
 class App extends Component {
     state = {
-        user: false
+        loggedIn: false
     }
 
     renderNavigation = () => {
         const {classes} = this.props;
 
-        if (this.state.user) {
+        if (this.state.loggedIn) {
             return [
                 <Link className={classes.links} to='/'>Home</Link>,
                 <Link className={classes.links} to='/dashboard'>Dashboard</Link>
@@ -49,6 +49,11 @@ class App extends Component {
                 <Link className={classes.links} to='/login'>Login</Link>
             ];
         }
+    }
+
+    logMeIn = () => {
+        console.log('log in method');
+        this.setState({loggedIn: true});
     }
 
     render() {
@@ -79,9 +84,14 @@ class App extends Component {
                     <div className={classes.body}>
                         <Switch>
                             <Route exact path='/' component={Home} />
-                            <Route path='/login' component={Login} />
+                            <Route path='/login' render={() => (
+                                this.state.loggedIn ? 
+                                <Redirect push to='/dashboard' /> :
+                                <Login handleLogin={this.logMeIn}/>
+                            )}/>
                             <Route path='/dashboard' component={Dashboard} />
                         </Switch>
+                        
                     </div>
                 </Grid>
             </div>

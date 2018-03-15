@@ -57,7 +57,7 @@ class Login extends Component {
                         </Typography>
                     </Grid>
                 </Grid>
-                { this.state.login ? <LoginForm /> : <SignupForm /> }
+                { this.state.login ? <LoginForm handleLogin={this.props.handleLogin} /> : <SignupForm /> }
                 { 
                     this.state.login ? 
                     <p className={classes.subtext}>Need to sign up? <button onClick={this.changeState}>Click here</button></p> :
