@@ -30,7 +30,6 @@ class Dashboard extends Component {
     getAccounts() {
         axios.get('/account')
             .then(res => {
-                console.log(res);
                 this.setState({accounts: res.data});
             })
             .catch(err => {

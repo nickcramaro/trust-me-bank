@@ -35,13 +35,20 @@ class App extends Component {
         loggedIn: false
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('token')) {
+            this.logMeIn();
+        }
+    }
+
     renderNavigation = () => {
         const {classes} = this.props;
 
         if (this.state.loggedIn) {
             return [
                 <Link className={classes.links} to='/'>Home</Link>,
-                <Link className={classes.links} to='/dashboard'>Dashboard</Link>
+                <Link className={classes.links} to='/dashboard'>Dashboard</Link>,
+                <Link className={classes.links} to='/' onClick={this.logMeOut}>Log Out</Link>
             ];
         } else {
             return [
@@ -53,6 +60,11 @@ class App extends Component {
 
     logMeIn = () => {
         this.setState({loggedIn: true});
+    }
+
+    logMeOut = () => {
+        localStorage.removeItem('token');
+        this.setState({loggedIn: false});
     }
 
     render() {
