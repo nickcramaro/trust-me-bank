@@ -28,7 +28,7 @@ class Dashboard extends Component {
     }
 
     getAccounts() {
-        axios.get('http://localhost:8080/account')
+        axios.get('/account')
             .then(res => {
                 console.log(res);
                 this.setState({accounts: res.data});
@@ -58,7 +58,7 @@ class Dashboard extends Component {
                         .map((a, i) => {
                             return (
                                 <Grid key={i} item xs={12} sm={6} md={3} className={classes.item}>
-                                    <SimpleCard title={a.name} body={a.amount} button='Show more'/>
+                                    <SimpleCard title={a.name} body={a.amount.toString()} button='Show more'/>
                                 </Grid>
                             );
                         })}

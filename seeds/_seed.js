@@ -1,5 +1,6 @@
+const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/trust-me');
+mongoose.connect(process.env.MONGO_URL);
 
 const seedUser = require('./user.seed');
 const seedAccount = require('./account.seed');

@@ -15,6 +15,7 @@ axios
     .interceptors
     .request
     .use(config => {
+        config.baseURL = NODE_URL;
         if (localStorage.getItem('token')) {
             config.headers.Authorization = 'JWT ' + localStorage.getItem('token');
         }

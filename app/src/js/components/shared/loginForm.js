@@ -34,7 +34,7 @@ class LoginForm extends Component {
     };
 
     handleClick = () => {
-        axios.post('http://localhost:8080/auth/login', this.state)
+        axios.post('/auth/login', this.state)
             .then(res => {
                 this.props.handleLogin();
             });
