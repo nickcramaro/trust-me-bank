@@ -29,16 +29,18 @@ const styles = {
 
 class SignupForm extends Component {
     state = {
-        fname: undefined,
-        lname: undefined,
+        firstName: undefined,
+        lastName: undefined,
         email: undefined,
         password: undefined
     };
 
     handleClick = () => {
-        console.log(this.state);
-        axios.post('http://localhost:8080/auth/signup', this.state)
-            .then(res => console.log(res));
+        axios.post('/auth/signup', this.state)
+            .then(res => {
+                this.props.handleSignup()
+            })
+            .catch(err => console.log(err));
     }
 
     handleChange = (event, name) => {
@@ -56,11 +58,11 @@ class SignupForm extends Component {
                     <Paper className={classes.paper}>
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor='fname'>First Name</InputLabel>
-                            <Input id='fname' onChange={(e, name) => this.handleChange(e, 'fname')}/>
+                            <Input id='fname' onChange={(e, name) => this.handleChange(e, 'firstName')}/>
                         </FormControl>
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor='lname'>Last Name</InputLabel>
-                            <Input id='lname' onChange={(e, name) => this.handleChange(e, 'lname')}/>
+                            <Input id='lname' onChange={(e, name) => this.handleChange(e, 'lastName')}/>
                         </FormControl>
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor='email'>Email</InputLabel>

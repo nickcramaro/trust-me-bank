@@ -37,6 +37,9 @@ class LoginForm extends Component {
         axios.post('/auth/login', this.state)
             .then(res => {
                 this.props.handleLogin();
+            })
+            .catch(err => {
+                console.log(err);
             });
     }
 
