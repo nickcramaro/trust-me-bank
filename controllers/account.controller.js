@@ -12,6 +12,7 @@ exports.getAll = (req, res) => {
 
 exports.create = (req, res) => {
     let newAccount = Account({
+        name: req.body.name,
         type: req.body.type,
         amount: req.body.amount,
         user_id: req.user._id
