@@ -5,27 +5,6 @@ import axios from 'axios';
 import Typography from 'material-ui/Typography';
 import SimpleCard from 'Shared/simpleCard';
 
-//TODO: replace with API call
-const accounts = [
-    {
-        id: 1,
-        name: 'Chequing',
-        amount: '304.12'
-    }, {
-        id: 2,
-        name: 'Savings',
-        amount: '2046.25'
-    }, {
-        id: 3,
-        name: 'Credit Line',
-        amount: '3520.12'
-    }, {
-        id: 4,
-        name: 'Visa',
-        amount: '150.64'
-    }
-]
-
 const styles = {
     root: {
         flexGrow: 1
@@ -45,7 +24,18 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.setState({accounts: accounts});
+        this.getAccounts();
+    }
+
+    getAccounts() {
+        axios.get('http://localhost:8080/account')
+            .then(res => {
+                console.log(res);
+                this.setState({accounts: res.data});
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {

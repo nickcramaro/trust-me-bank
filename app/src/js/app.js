@@ -52,7 +52,6 @@ class App extends Component {
     }
 
     logMeIn = () => {
-        console.log('log in method');
         this.setState({loggedIn: true});
     }
 
