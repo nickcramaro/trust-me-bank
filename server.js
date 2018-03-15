@@ -22,11 +22,7 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
     if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
         jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, decoded) => {
-            if (err) {
-                req.user = undefined;
-            } else {
-                req.user = decoded;
-            }
+            req.user = err ? undefined : decoded;
             next();
         })
     } else {
