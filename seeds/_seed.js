@@ -8,7 +8,7 @@ const seedTransaction = require('./transaction.seed');
 
 seedUser().then((users) => {
     console.log(users);
-    seedAccount().then((accounts) => {
+    seedAccount(users).then((accounts) => {
         console.log(accounts);
         seedTransaction().then((transactions) => {
             console.log(transactions);

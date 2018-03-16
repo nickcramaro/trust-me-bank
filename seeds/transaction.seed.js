@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Chance = require('chance');
 const chance = new Chance();
 const Account = require('../models/account.model');
-const Tranaction = require('../models/transaction.model');
+const Transaction = require('../models/transaction.model');
 
 function getAllAccountIds() {
     return Account.find().then(accounts => {
@@ -32,9 +32,9 @@ function generateTransactions(num = 1) {
 module.exports = () => {
     return generateTransactions(10000).then(transactionsToSeed => {
         return new Promise((resolve, reject) => {
-            Tranaction.collection.insertMany(transactionsToSeed, (err, transactions) => {
+            Transaction.collection.insertMany(transactionsToSeed, (err, transactions) => {
                 if (!err)
-                    resolve(transactions);
+                    resolve(transactions.ops);
                 else
                     reject(err);
             });

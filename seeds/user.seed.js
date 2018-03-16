@@ -14,7 +14,7 @@ module.exports = () => {
     return new Promise((resolve, reject) => {
         User.collection.insertMany(usersToSeed, (err, users) => {
             if (!err)
-                resolve(users);
+                resolve(users.ops);
             else
                 reject(err);
         });
