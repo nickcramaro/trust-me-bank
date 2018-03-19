@@ -5,7 +5,7 @@ const accountSchema = new Schema({
     name: String,
     type: Number,
     amount: Number,
-    user_id: Schema.Types.ObjectId
+    userId: Schema.Types.ObjectId
 });
 
 const Account = mongoose.model('Account', accountSchema);

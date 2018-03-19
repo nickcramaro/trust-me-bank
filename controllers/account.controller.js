@@ -1,7 +1,7 @@
 const Account = require('../models/account.model');
 
 exports.getAll = (req, res) => {
-    Account.find({user_id: req.user._id})
+    Account.find({userId: req.user._id})
         .then(account => {
             res.send(account);
         })
