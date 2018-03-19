@@ -15,7 +15,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         type: req.body.type,
         amount: req.body.amount,
-        user_id: req.user._id
+        userId: req.user._id
     });
     newAccount.save()
         .then(account => {
