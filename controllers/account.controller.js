@@ -41,11 +41,9 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-    
 }
 
 exports.delete = (req, res) => {
-    console.log(req.params.id);
     Account.findOneAndRemove({_id: req.params.id})
         .then(account => {
             res.send(account);

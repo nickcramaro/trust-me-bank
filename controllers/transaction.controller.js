@@ -12,13 +12,18 @@ exports.getAll = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    res.send({ok: 'ok'});
-}
-
-exports.update = (req, res) => {
-    res.send({ok: 'ok'});
-}
-
-exports.delete = (req, res) => {
-    res.send({ok: 'ok'});
+    let newTransaction = new Transaction({
+        amount: req.body.amount,
+        date: Date.now(),
+        accountIdTo: mongoose.Types.ObjectId(req.body.accountIdTo),
+        accountIdFrom: mongoose.Types.ObjectId(req.body.accountIdFrom),
+        description: 'Account Transfer'
+    });
+    newTransaction.save()
+        .then(transaction => {
+            res.send(transaction);
+        })
+        .catch(err => {
+            res.status(500).send({error: 'FAIL'});
+        });
 }
