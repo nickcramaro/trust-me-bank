@@ -1,9 +1,14 @@
-const User = require('../models/user.model');
-const Account = require('../models/account.model');
+const mongoose = require('mongoose');
 const Transaction = require('../models/transaction.model');
 
 exports.getAll = (req, res) => {
-    res.send({ok: 'ok'});
+    Transaction.find({accountIdFrom: mongoose.Types.ObjectId(req.params.accountId)})
+        .then(transaction => {
+            res.send(transaction);
+        })
+        .catch(err => {
+            res.status(500).send({error: 'FAIL'});
+        });
 }
 
 exports.create = (req, res) => {

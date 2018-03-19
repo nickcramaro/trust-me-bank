@@ -20,8 +20,8 @@ function generateTransactions(num = 1) {
             transactions.push({
                 amount: chance.floating({min: 1, max: 10000, fixed: 2}),
                 date: chance.date(),
-                accountIdFrom: accountIds[Math.floor(Math.random() * accountIds.length)],
-                accountIdTo: transfer ? accountIds[Math.floor(Math.random() * accountIds.length)] : chance.string({length: 24, pool: '0123456789'}),
+                accountIdFrom: mongoose.Types.ObjectId(accountIds[Math.floor(Math.random() * accountIds.length)]),
+                accountIdTo: transfer ? mongoose.Types.ObjectId(accountIds[Math.floor(Math.random() * accountIds.length)]) : chance.string({length: 24, pool: '0123456789'}),
                 description: transfer ? 'Account Transfer' : chance.company()
             });
         }
@@ -30,7 +30,7 @@ function generateTransactions(num = 1) {
 }
 
 module.exports = () => {
-    return generateTransactions(10000).then(transactionsToSeed => {
+    return generateTransactions(1000).then(transactionsToSeed => {
         return new Promise((resolve, reject) => {
             Transaction.collection.insertMany(transactionsToSeed, (err, transactions) => {
                 if (!err)
