@@ -9,7 +9,7 @@ exports.getAll = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};
 
 exports.create = (req, res) => {
     let newTransaction = new Transaction({
@@ -26,4 +26,4 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};

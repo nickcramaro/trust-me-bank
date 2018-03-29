@@ -45,6 +45,6 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({template: './src/index.html', filename: './index.html'}),
-        new webpack.DefinePlugin({NODE_URL: JSON.stringify('http://localhost:8080/')})
+        new webpack.DefinePlugin({NODE_URL: JSON.stringify('http://localhost:8081/')})
     ]
 };

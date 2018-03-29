@@ -28,12 +28,12 @@ const styles = {
         marginTop: '50px',
         flexGrow: 1
     }
-}
+};
 
 class App extends Component {
     state = {
         loggedIn: false
-    }
+    };
 
     componentDidMount() {
         if (localStorage.getItem('token')) {
@@ -53,19 +53,19 @@ class App extends Component {
         } else {
             return [
                 <Link className={classes.links} to='/'>Home</Link>,
-                <Link className={classes.links} to='/login'>Login</Link>
+                <Link className={classes.links} to='/login'>Login/Register</Link>
             ];
         }
-    }
+    };
 
     logMeIn = () => {
         this.setState({loggedIn: true});
-    }
+    };
 
     logMeOut = () => {
         localStorage.removeItem('token');
         this.setState({loggedIn: false});
-    }
+    };
 
     render() {
         const {classes} = this.props;

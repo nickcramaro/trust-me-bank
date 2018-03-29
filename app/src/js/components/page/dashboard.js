@@ -16,12 +16,12 @@ const styles = {
     container: {
         padding: '50px'
     }
-}
+};
 
 class Dashboard extends Component {
     state = {
         accounts: []
-    }
+    };
 
     componentDidMount() {
         this.getAccounts();

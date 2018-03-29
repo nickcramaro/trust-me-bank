@@ -6,4 +6,4 @@ module.exports = (app) => {
     app.post('/account', authController.authRequired, accountController.create);
     app.put('/account', authController.authRequired, accountController.update);
     app.delete('/account/:id', authController.authRequired, accountController.delete);
-}
+};

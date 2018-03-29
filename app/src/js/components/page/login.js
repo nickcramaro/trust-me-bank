@@ -32,18 +32,18 @@ const styles = {
     subtext: {
         textAlign: 'center'
     }
-}
+};
 
 class Login extends Component {
     state = {
         login: true
-    }
+    };
 
     changeState = () => {
         this.setState({
             login: !this.state.login
         });
-    }
+    };
 
     render() {
         const {classes} = this.props;

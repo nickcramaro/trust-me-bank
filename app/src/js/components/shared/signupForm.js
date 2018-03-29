@@ -25,7 +25,7 @@ const styles = {
     button: {
         margin: '10px 0 0 0'
     }
-}
+};
 
 class SignupForm extends Component {
     state = {
@@ -41,13 +41,13 @@ class SignupForm extends Component {
                 this.props.handleSignup()
             })
             .catch(err => console.log(err));
-    }
+    };
 
     handleChange = (event, name) => {
         this.setState({
             [name]: event.target.value
         })
-    }
+    };
     
     render() {
         const {classes} = this.props;

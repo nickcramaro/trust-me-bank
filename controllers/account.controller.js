@@ -8,7 +8,7 @@ exports.getAll = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};
 
 exports.create = (req, res) => {
     let newAccount = Account({
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};
 
 exports.update = (req, res) => {
     Account.findById(req.body.id)
@@ -41,7 +41,7 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};
 
 exports.delete = (req, res) => {
     Account.findOneAndRemove({_id: req.params.id})
@@ -51,4 +51,4 @@ exports.delete = (req, res) => {
         .catch(err => {
             res.status(500).send({error: 'FAIL'});
         });
-}
+};

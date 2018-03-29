@@ -26,4 +26,4 @@ module.exports = (users) => {
                 reject(err);
         });
     });
-}
+};

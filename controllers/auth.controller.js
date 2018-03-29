@@ -42,7 +42,7 @@ exports.login = (req, res) => {
                 .status(500)
                 .send({error: 'FAIL'});
         });
-}
+};
 
 exports.authRequired = (req, res, next) => {
     if (req.user) {
@@ -52,4 +52,4 @@ exports.authRequired = (req, res, next) => {
             .status(500)
             .send({error: 'FAIL'});
     }
-}
+};

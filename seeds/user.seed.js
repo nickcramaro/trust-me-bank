@@ -10,7 +10,7 @@ module.exports = () => {
         {firstName: chance.first(), lastName: chance.last(), email: 'bperson@email.com', password: bcrypt.hashSync('@super1', 10)},
         {firstName: chance.first(), lastName: chance.last(), email: 'cperson@email.com', password: bcrypt.hashSync('@super1', 10)},
         {firstName: chance.first(), lastName: chance.last(), email: 'dperson@email.com', password: bcrypt.hashSync('@super1', 10)}
-    ]
+    ];
     return new Promise((resolve, reject) => {
         User.collection.insertMany(usersToSeed, (err, users) => {
             if (!err)
@@ -19,4 +19,4 @@ module.exports = () => {
                 reject(err);
         });
     });
-}
+};

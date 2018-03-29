@@ -15,7 +15,7 @@ function getAllAccountIds() {
 function generateTransactions(num = 1) {
     let transactions = [];
     return getAllAccountIds().then(accountIds => {
-        for (var i = 0; i < num; i++) {
+        for (let i = 0; i < num; i++) {
             let transfer = !!Math.floor(Math.random() * 2);
             transactions.push({
                 amount: chance.floating({min: 1, max: 10000, fixed: 2}),
@@ -40,4 +40,4 @@ module.exports = () => {
             });
         });
     });    
-}
+};

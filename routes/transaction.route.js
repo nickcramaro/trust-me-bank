@@ -4,4 +4,4 @@ module.exports = (app) => {
 
     app.get('/transaction/:accountId', authController.authRequired, transactionController.getAll);
     app.post('/transaction', authController.authRequired, transactionController.create);
-}
+};
