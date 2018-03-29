@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const Account = require('../models/account.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -8,9 +9,12 @@ exports.signup = (req, res) => {
     user
         .save()
         .then((user) => {
-            res.send(user);
+            let defaultAccount = new Account({name: 'Savings', type: 0, amount: 5, userId: user._id});
+            return defaultAccount.save();
         })
-        .catch(() => {
+        .then(() => res.send(user))
+        .catch((err) => {
+            console.error(err);
             res
                 .status(500)
                 .send({error: 'FAIL'});
@@ -21,20 +25,12 @@ exports.login = (req, res) => {
     User
         .findOne({email: req.body.email})
         .then(user => {
-            if (user) {
-                if (user.comparePassword(req.body.password)) {
-                    res.json({
-                        token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET)
-                    });
-                } else {
-                    res
-                        .status(500)
-                        .send({error: 'FAIL'});
-                }
+            if (user && user.comparePassword(req.body.password)) {
+                res.json({
+                    token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET)
+                });
             } else {
-                res
-                    .status(500)
-                    .send({error: 'FAIL'});
+                return Promise.reject();
             }
         })
         .catch(() => {
@@ -49,7 +45,7 @@ exports.authRequired = (req, res, next) => {
         next();
     } else {
         res
-            .status(500)
-            .send({error: 'FAIL'});
+            .status(401)
+            .send({error: 'UNAUTHORIZED'});
     }
 };
