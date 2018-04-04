@@ -15,17 +15,30 @@ const styles = {
         flexGrow: 1,
         padding: 12
     },
+    headerContainer: {
+        height: '56px'
+    },
+    header: {
+        height: '56px',
+        minHeight: '56px'
+    },
     title: {
-        margin: '0 auto 0 0'
+        margin: '0 auto 0 0',
+        fontSize: '16px'
+    },
+    subTitle: {
+        fontStyle: 'italic',
+        fontWeight: 'normal'
     },
     links: {
         display: 'inline',
         padding: '0 3px',
         textDecoration: 'none',
-        color: 'black'
+        color: 'black',
+        fontSize: '14px'
     },
     body: {
-        marginTop: '50px',
+        marginTop: '32px',
         flexGrow: 1
     }
 };
@@ -74,10 +87,10 @@ class App extends Component {
             <div className={classes.root}>
                 <Grid container spacing={24}>
                     <Grid item xs={12}>
-                        <AppBar position='fixed' color='default'>
-                            <Toolbar>
+                        <AppBar position='fixed' color='default' className={classes.headerContainer}>
+                            <Toolbar className={classes.header}>
                                 <Typography className={classes.title} variant='title'>
-                                    Trust Me Bank ;)
+                                    TrustMe<span className={classes.subTitle}>Bank</span> ;)
                                 </Typography>
                                 <nav>
                                     {this.renderNavigation().map((link, i) => {
