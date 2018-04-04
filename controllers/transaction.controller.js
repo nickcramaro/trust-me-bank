@@ -25,11 +25,15 @@ exports.getAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
+    if(req.body.amount < 1) {
+        res.status(400).send({error: 'NEGATIVE_AMOUNT'});
+    }
+
     let findUserPromise =  User.findOne({email: req.body.recipientEmail});
 
     findUserPromise
         .catch(() => {
-            res.status(500).send({error: 'RECIPIENT_NOT_FOUND'});
+            res.status(404).send({error: 'RECIPIENT_NOT_FOUND'});
         });
 
     let getAccountQuery = id => ({userId: mongoose.Types.ObjectId(id)});

@@ -86,7 +86,7 @@ class Dashboard extends React.Component {
             amount: transferAmount,
             recipientEmail
         }).then(({data: account}) => {
-            this.setState({accounts: [account]});
+            this.setState({accounts: [account], transferAmount: 0, recipientEmail: ''});
         });
     };
 
@@ -107,7 +107,7 @@ class Dashboard extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const {accounts, loading, recipientSuggestions, recipientEmail} = this.state;
+        const {accounts, loading, recipientSuggestions, recipientEmail, transferAmount} = this.state;
 
         const defaultAccount = accounts[0];
 
@@ -167,6 +167,7 @@ class Dashboard extends React.Component {
                                 <div className={classes.formControl}>
                                     <label className={classes.formLabel} htmlFor="amount">Amount</label>
                                     <input id="amount" className={classes.formInput}
+                                           value={transferAmount}
                                            onChange={(event) => this.setState({transferAmount: event.target.value})}
                                            type="text"/>
                                 </div>
