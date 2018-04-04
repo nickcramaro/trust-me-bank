@@ -8,7 +8,7 @@ import Grid from 'material-ui/Grid';
 
 import Home from 'Page/home';
 import Login from 'Page/login';
-import Dashboard from 'Page/dashboard';
+import Dashboard from 'Page/dashboard/dashboard';
 
 const styles = {
     root: {

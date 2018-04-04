@@ -25,11 +25,14 @@ exports.getAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    if(req.body.amount < 1) {
+    let {recipientEmail, amount} = req.body;
+
+    if(amount < 0) {
         res.status(400).send({error: 'NEGATIVE_AMOUNT'});
+        return;
     }
 
-    let findUserPromise =  User.findOne({email: req.body.recipientEmail});
+    let findUserPromise =  User.findOne({email: recipientEmail});
 
     findUserPromise
         .catch(() => {
@@ -40,8 +43,8 @@ exports.create = (req, res) => {
     findUserPromise
         .then((recipient) => {
             return Promise.all([
-                Account.update(getAccountQuery(req.user._id), {$inc: {amount: req.body.amount * -1}}),
-                Account.update(getAccountQuery(recipient._id), {$inc: {amount: req.body.amount}})
+                Account.update(getAccountQuery(req.user._id), {$inc: {amount: amount * -1}}),
+                Account.update(getAccountQuery(recipient._id), {$inc: {amount}})
             ]);
         })
         .then(() => Account.findOne(getAccountQuery(req.user._id)))
