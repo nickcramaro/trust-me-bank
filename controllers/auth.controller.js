@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const Account = require('../models/account.model');
+const Raven = require('raven');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -30,13 +31,26 @@ exports.login = (req, res) => {
                     token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET)
                 });
             } else {
-                return Promise.reject();
+                Raven.captureException(new Error("Invalid Login: Invalid"), {
+                    extra: {
+                        email: req.body.email,
+                        _id: user._id
+                    },
+                }, function () {
+                    return Promise.reject();
+                });
             }
         })
         .catch(() => {
-            res
-                .status(500)
-                .send({error: 'FAIL'});
+            Raven.captureException(new Error("Invalid Login: No User"), {
+                extra: {
+                    email: req.body.email
+                },
+            }, function () {
+                res
+                    .status(400)
+                    .send({error: 'FAIL'});
+            });
         });
 };
 
