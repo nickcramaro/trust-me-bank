@@ -1,4 +1,5 @@
 const dotenv = require('dotenv').config();
+const Raven = require('raven');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -35,6 +36,15 @@ app.use((req, res, next) => {
 auth(app);
 accounts(app);
 transactions(app);
+
+
+// Set up Raven
+if (process.env.RAVEN_DSN) {
+    console.info("RAVEN_DSN is configured. Setting up Raven");
+    Raven.config(process.env.RAVEN_DSN).install({ sendTimeout: 1000 });
+    app.use(Raven.requestHandler());
+    app.use(Raven.errorHandler());
+}
 
 //listening on port 8081
 app.listen(8081);
