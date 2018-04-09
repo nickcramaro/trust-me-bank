@@ -40,7 +40,8 @@ module.exports = {
     resolve: {
         alias: { 
             Page: path.resolve(__dirname, 'src/js/components/page'),
-            Shared: path.resolve(__dirname, 'src/js/components/shared')
+            Shared: path.resolve(__dirname, 'src/js/components/shared'),
+            Src: path.resolve(__dirname, 'src')
         }
     },
     plugins: [

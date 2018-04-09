@@ -6,7 +6,6 @@ import Input, {InputLabel} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import axios from 'axios';
 
 import LoginForm from 'Shared/loginForm';
 import SignupForm from 'Shared/signupForm';

@@ -26,9 +26,11 @@ exports.login = (req, res) => {
         .findOne({email: req.body.email})
         .then(user => {
             if (user && user.comparePassword(req.body.password)) {
-                res.json({
-                    token: jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET)
-                });
+                let token = jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET);
+                //res.json({token});
+                res.status(200)
+                    .cookie('sessionToken', token)
+                    .send('success');
             } else {
                 return Promise.reject();
             }

@@ -1,7 +1,8 @@
 import React from 'react';
 import {withStyles} from 'material-ui/styles';
-import axios from 'axios';
+import {api} from 'Src/index';
 import Transfer from 'Page/dashboard/transfer';
+import Faqs from 'Page/dashboard/faqs';
 
 const styles = {
     root: {
@@ -22,11 +23,15 @@ const styles = {
     },
     leftPanel: {
         marginLeft: '10px',
+        marginRight: '10px',
         flex: '1 1 auto'
     },
     rightPanel: {
         flex: '0 0 250px',
         padding: '0 10px 10px 10px'
+    },
+    accountSection: {
+        marginBottom: '20px'
     },
     accountsTable: {
         width: '100%',
@@ -45,7 +50,7 @@ class Dashboard extends React.Component {
     }
 
     getAccounts = () => {
-        axios.get('/account')
+        api.get('/account')
             .then(res => {
                 this.setState({accounts: res.data, loading: false});
             })
@@ -55,7 +60,7 @@ class Dashboard extends React.Component {
     };
 
     sendTransfer = (recipientEmail, transferAmount) => {
-        return axios.post('/transaction', {
+        return api.post('/transaction', {
             amount: transferAmount,
             recipientEmail
         }).then(({data: account}) => {
@@ -70,7 +75,7 @@ class Dashboard extends React.Component {
     };
 
     getRecipientSuggestions = ({value}) => {
-        axios.post('findRecipient', {emailSearch: value})
+        api.post('findRecipient', {emailSearch: value})
             .then(r => this.setState({recipientSuggestions: r.data}));
     };
 

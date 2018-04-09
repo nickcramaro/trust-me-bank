@@ -3,4 +3,4 @@ module.exports = (app) => {
 
     app.post('/auth/signup', authController.signup);
     app.post('/auth/login', authController.login);
-}
+};

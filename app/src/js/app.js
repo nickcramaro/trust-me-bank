@@ -49,9 +49,14 @@ class App extends Component {
     };
 
     componentDidMount() {
-        if (localStorage.getItem('token')) {
+        if (document.cookie.includes('sessionToken')) {
             this.logMeIn();
         }
+
+        // //JWT header authorization
+        // if (localStorage.getItem('token')) {
+        //     this.logMeIn();
+        // }
     }
 
     renderNavigation = () => {
@@ -76,9 +81,22 @@ class App extends Component {
     };
 
     logMeOut = () => {
-        localStorage.removeItem('token');
+        this.deleteAllCookies();
+        //localStorage.removeItem('token');
         this.setState({loggedIn: false});
     };
+
+    //https://stackoverflow.com/a/179514/373655
+    deleteAllCookies() {
+        let cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    }
 
     render() {
         const {classes} = this.props;
@@ -104,18 +122,18 @@ class App extends Component {
                             </Toolbar>
                         </AppBar>
                     </Grid>
-                    
+
                     <div className={classes.body}>
                         <Switch>
-                            <Route exact path='/' component={Home} />
+                            <Route exact path='/' component={Home}/>
                             <Route path='/login' render={() => (
-                                this.state.loggedIn ? 
-                                <Redirect push to='/dashboard' /> :
-                                <Login handleLogin={this.logMeIn}/>
+                                this.state.loggedIn ?
+                                    <Redirect push to='/dashboard'/> :
+                                    <Login handleLogin={this.logMeIn}/>
                             )}/>
-                            <Route path='/dashboard' component={Dashboard} />
+                            <Route path='/dashboard' component={Dashboard}/>
                         </Switch>
-                        
+
                     </div>
                 </Grid>
             </div>

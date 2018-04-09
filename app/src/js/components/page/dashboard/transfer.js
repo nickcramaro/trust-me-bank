@@ -1,14 +1,10 @@
 import React from 'react';
 import {withStyles} from 'material-ui/styles';
-import axios from 'axios';
+import {api} from 'Src/index';
 import Autosuggest from 'react-autosuggest';
 import Button from 'material-ui/Button';
 
 const styles = {
-    root: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif;',
-        fontSize: '12px'
-    },
     formControl: {
         width: '100%',
         margin: '0 0 10px 0'
@@ -38,7 +34,7 @@ class Transfer extends React.Component {
     };
 
     getRecipientSuggestions = ({value}) => {
-        axios.post('findRecipient', {emailSearch: value})
+        api.post('findRecipient', {emailSearch: value})
             .then(r => this.setState({recipientSuggestions: r.data}));
     };
 

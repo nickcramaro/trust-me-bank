@@ -6,7 +6,7 @@ import Input, {InputLabel} from 'material-ui/Input';
 import {FormControl, FormHelperText} from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import axios from 'axios';
+import {api} from 'Src/index';
 
 const styles = {
     container: {
@@ -36,7 +36,7 @@ class SignupForm extends Component {
     };
 
     handleClick = () => {
-        axios.post('/auth/signup', this.state)
+        api.post('/auth/signup', this.state)
             .then(res => {
                 this.props.handleSignup()
             })
