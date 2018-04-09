@@ -31,6 +31,7 @@ class SignupForm extends Component {
     state = {
         firstName: undefined,
         lastName: undefined,
+        sin: undefined,
         email: undefined,
         password: undefined
     };
@@ -63,6 +64,10 @@ class SignupForm extends Component {
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor='lname'>Last Name</InputLabel>
                             <Input id='lname' onChange={(e, name) => this.handleChange(e, 'lastName')}/>
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor='sin'>Social Insurance Number</InputLabel>
+                            <Input id='sin' onChange={(e, name) => this.handleChange(e, 'sin')}/>
                         </FormControl>
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor='email'>Email</InputLabel>

@@ -49,6 +49,6 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({template: './src/index.html', filename: './index.html'}),
-        new webpack.DefinePlugin({NODE_URL: JSON.stringify(process.env.NODE_URL || 'http://localhost:8081/')})
+        new webpack.DefinePlugin({NODE_URL: JSON.stringify(process.env.NODE_URL || 'http://localhost:8081')})
     ]
 };

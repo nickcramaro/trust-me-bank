@@ -13,7 +13,7 @@ import SimpleCard from 'Shared/simpleCard';
 
 const styles = {
     header: {
-        backgroundImage: "url('" + NODE_URL + "images/piggy.jpg')",
+        backgroundImage: "url('" + NODE_URL + "/images/piggy.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         height: '70vh',

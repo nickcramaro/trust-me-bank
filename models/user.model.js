@@ -13,6 +13,11 @@ const userSchema = new Schema({
         trim: true,
         required: true
     },
+    sin: {
+        type: String,
+        trim: true,
+        required: true
+    },
     email: {
         type: String,
         trim: true,

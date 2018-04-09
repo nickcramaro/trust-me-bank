@@ -68,24 +68,9 @@ class Dashboard extends React.Component {
         });
     };
 
-    onChangeRecipient = (event, {newValue}) => {
-        this.setState({
-            recipientEmail: newValue
-        });
-    };
-
-    getRecipientSuggestions = ({value}) => {
-        api.post('findRecipient', {emailSearch: value})
-            .then(r => this.setState({recipientSuggestions: r.data}));
-    };
-
-    clearRecipientSuggestions = () => {
-        this.setState({recipientSuggestions: []});
-    };
-
     render() {
         const {classes} = this.props;
-        const {accounts, loading, recipientSuggestions, recipientEmail, transferAmount} = this.state;
+        const {accounts, loading} = this.state;
 
         const defaultAccount = accounts[0];
 
