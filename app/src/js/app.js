@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
+import {api} from 'Src/index';
 
 import Home from 'Page/home';
 import Login from 'Page/login';
@@ -49,9 +50,9 @@ class App extends Component {
     };
 
     componentDidMount() {
-        if (document.cookie.includes('sessionToken')) {
+        api.get('user').then(() => {
             this.logMeIn();
-        }
+        });
 
         // //JWT header authorization
         // if (localStorage.getItem('token')) {
