@@ -3,17 +3,6 @@ const Transaction = require('../models/transaction.model');
 const User = require('../models/user.model');
 const Account = require('../models/account.model');
 
-exports.findRecipient = (req, res) => {
-    User.find({email: {$regex: `.*${req.body.emailSearch}.*`}})
-        .then((results) => {
-            res.send(results);
-        })
-        .catch(() => {
-            res.status(500).send({error: 'FAIL'});
-        });
-
-};
-
 exports.getAll = (req, res) => {
     Transaction.find({accountIdFrom: mongoose.Types.ObjectId(req.params.accountId)})
         .then(transaction => {

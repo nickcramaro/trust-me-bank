@@ -34,7 +34,7 @@ class Transfer extends React.Component {
     };
 
     getRecipientSuggestions = ({value}) => {
-        api.post('findRecipient', {emailSearch: value})
+        api.post('user/search', {emailSearch: value})
             .then(r => this.setState({recipientSuggestions: r.data}));
     };
 

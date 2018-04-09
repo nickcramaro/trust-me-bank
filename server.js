@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('./routes/auth.route');
 const accounts = require('./routes/account.route');
 const transactions = require('./routes/transaction.route');
+const userRoutes = require('./routes/user.route');
 
 mongoose.connect(process.env.MONGO_URL);
 
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 auth(app);
 accounts(app);
 transactions(app);
+userRoutes(app);
 
 
 // Set up Raven
