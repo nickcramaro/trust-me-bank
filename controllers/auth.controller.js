@@ -5,7 +5,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 exports.signup = (req, res) => {
-    let user = new User({firstName: req.body.firstName, lastName: req.body.lastName, sin: req.body.sin, email: req.body.email});
+    let user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        sin: req.body.sin,
+        email: req.body.email
+    });
     user.password = bcrypt.hashSync(req.body.password, 10);
     user
         .save()
@@ -27,7 +32,14 @@ exports.login = (req, res) => {
         .findOne({email: req.body.email})
         .then(user => {
             if (user && user.comparePassword(req.body.password)) {
-                let token = jwt.sign({firstName: user.firstName, lastName: user.lastName, email: user.email, _id: user._id}, process.env.SECRET);
+                let token = jwt.sign({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    sin: user.sin,
+                    email: user.email,
+                    _id: user._id
+                }, process.env.SECRET);
+
                 //res.json({token});
                 res.status(200)
                     .cookie('sessionToken', token)

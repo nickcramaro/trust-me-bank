@@ -14,19 +14,11 @@ exports.searchUsersByEmail = (req, res) => {
 };
 
 exports.getLoggedInUser = (req, res) => {
-    User.find({_id: req.user._id})
-        .then((results) => {
-            res.send(
-                results.map(user => ({
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    sin: user.sin,
-                    email: user.email
-                }))
-            );
-        })
-        .catch(() => {
-            res.status(500).send({error: 'FAIL'});
-        });
-
+    res.send({
+        _id: req.user._id,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        sin: req.user.sin,
+        email: req.user.email
+    });
 };

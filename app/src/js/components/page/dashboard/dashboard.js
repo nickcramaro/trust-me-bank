@@ -100,7 +100,7 @@ class Dashboard extends React.Component {
                                 </table>
                             </div>
                             <div>
-                                <h2 className="type--heading">FAQs</h2>
+                                {/*<h2 className="type--heading">FAQs</h2>*/}
                             </div>
                         </div>
 
