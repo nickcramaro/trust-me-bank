@@ -12,10 +12,20 @@ const accounts = require('./routes/account.route');
 const transactions = require('./routes/transaction.route');
 const userRoutes = require('./routes/user.route');
 const faqRoutes = require('./routes/faq.route');
+const RateLimit = require('express-rate-limit');
 
 mongoose.connect(process.env.MONGO_URL);
 
 app.use(express.static('public'));
+
+// let apiLimiter = new RateLimit({
+//     windowMs: 5*60*1000, // 5 minutes
+//     max: 30,
+//     delayAfter: 5,
+//     delayMs: 500 // 0.5s
+// });
+// app.use('/', apiLimiter);
+
 app.use(function (req, res, next) {
 
     res.header('Access-Control-Allow-Origin', req.headers.origin);
