@@ -50,9 +50,9 @@ exports.login = (req, res) => {
                         email: req.body.email,
                         _id: user._id
                     },
-                }, function () {
-                    return Promise.reject();
                 });
+
+                return Promise.reject();
             }
         })
         .catch(() => {
