@@ -11,6 +11,7 @@ const auth = require('./routes/auth.route');
 const accounts = require('./routes/account.route');
 const transactions = require('./routes/transaction.route');
 const userRoutes = require('./routes/user.route');
+const faqRoutes = require('./routes/faq.route');
 
 mongoose.connect(process.env.MONGO_URL);
 
@@ -58,6 +59,7 @@ auth(app);
 accounts(app);
 transactions(app);
 userRoutes(app);
+faqRoutes(app);
 
 
 // Set up Raven

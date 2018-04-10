@@ -2,8 +2,12 @@ import React from 'react';
 import {withStyles} from 'material-ui/styles';
 import marked from 'marked';
 import Button from 'material-ui/Button';
+import {api} from 'Src/index';
 
 const styles = {
+    faqComponent: {
+        margin: '0 10px'
+    },
     formControl: {
         width: '100%',
         margin: '0 0 10px 0'
@@ -14,32 +18,66 @@ const styles = {
     formInput: {
         width: '100%'
     },
-    button: {
-        margin: '10px 0 0 0'
+    faqItem: {
+        padding: '10px',
+        margin: '10px',
+        borderBottom: '1px solid #ddd'
     }
 };
 
 class Faqs extends React.Component {
     state = {
-        faqSearch: ''
+        newQuestion: '',
+        faqs: []
     };
 
+    componentDidMount() {
+        api.get('/faq').then((res) => {
+            this.setState({faqs: res.data});
+        });
+    }
+
+    askQuestion() {
+        const {newQuestion, faqs} = this.state;
+
+        api.post('/faq', {question: newQuestion})
+            .then(response => {
+                this.setState({
+                    faqs: [response.data, ...faqs],
+                    newQuestion: ''
+                });
+            });
+    }
+
     render() {
-        const {faqSearch} = this.state;
+        const {newQuestion, faqs} = this.state;
         const {classes} = this.props;
 
-        console.log('marked', marked('# Marked in browser\n\nRendered by **marked**.'));
-
         return (
-            <div>
+            <div className={classes.faqComponent}>
                 <h2 className="type--heading">FAQs</h2>
-                <div className={classes.formControl}>
-                    <label className={classes.formLabel} htmlFor="faq-search">Search</label>
-                    <input id="faq-search" className={classes.formInput}
-                           value={faqSearch}
-                           onChange={(event) => this.setState({faqSearch: event.target.value})}
-                           type="text"/>
+                <form onSubmit={event => {
+                    event.preventDefault();
+                    this.askQuestion();
+                }}>
+                    <div className={classes.formControl}>
+                        <label className={classes.formLabel} htmlFor="new-faq">Question</label>
+                        <textarea id="new-faq" className={classes.formInput}
+                                  value={newQuestion}
+                                  onChange={(event) => this.setState({newQuestion: event.target.value})}/>
+                    </div>
+                    <Button variant="raised" color="primary" type="submit"
+                            className={classes.button}>
+                        Ask Question
+                    </Button>
+                </form>
+
+                <div>
+                    {faqs.slice(0, 20).map(faq => (
+                        <div className={classes.faqItem} key={faq._id} dangerouslySetInnerHTML={{__html: marked(faq.question, {sanitize: true})}}/>
+                    ))}
                 </div>
+
             </div>
         );
     }

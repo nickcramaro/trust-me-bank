@@ -78,34 +78,35 @@ class Dashboard extends React.Component {
             <div className={classes.root}>
                 <h1 className={classes.title}>Dashboard</h1>
                 {!loading && (
-                    <div className={classes.content}>
-                        <div className={classes.leftPanel}>
-                            <div>
-                                <h2 className="type--heading">Accounts</h2>
-                                <table className={classes.accountsTable}>
-                                    <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Account number</th>
-                                        <th>Balance</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Savings Account</td>
-                                        <td>4839573918</td>
-                                        <td>${defaultAccount.amount}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <div>
+                        <div className={classes.content}>
+                            <div className={classes.leftPanel}>
+                                <div>
+                                    <h2 className="type--heading">Accounts</h2>
+                                    <table className={classes.accountsTable}>
+                                        <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Account number</th>
+                                            <th>Balance</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Savings Account</td>
+                                            <td>4839573918</td>
+                                            <td>${defaultAccount.amount}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div>
-                                {/*<h2 className="type--heading">FAQs</h2>*/}
+                            <div className={classes.rightPanel}>
+                                <Transfer sendTransfer={this.sendTransfer}/>
                             </div>
                         </div>
-
-                        <div className={classes.rightPanel}>
-                            <Transfer sendTransfer={this.sendTransfer}/>
+                        <div>
+                            <Faqs/>
                         </div>
                     </div>
                 )}
